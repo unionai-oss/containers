@@ -1,4 +1,4 @@
-name: Build & Push Ray Logs Sidecar Image
+name: Build & Push Spark History Server Image
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -7,8 +7,8 @@ concurrency:
 on:
   pull_request:
     paths:
-      - .github/workflows/ray-logs-sidecar.yml
-      - ray-logs-sidecar/**
+      - .github/workflows/spark-history-server.yml
+      - spark-history-server/**
   push:
     branches:
       - main
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        container: [ray-logs-sidecar]
+        container: [spark-history-server]
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-qemu-action@v3
